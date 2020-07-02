@@ -4,11 +4,6 @@ function GoogleDocFromForm(e) {
   var email = e.values[1];
   var fullName = e.values[2];
   var contest = e.values[3];  
-  var s121=e.values[4];
-  var s123=e.values[5];
-  var s133=e.values[6];
-  var s141E=e.values[7];
-  var s141C=e.values[8];
   var budget=e.values[9];
   var prevEdu=e.values[10];
   var school=e.values[11];
@@ -36,28 +31,27 @@ function GoogleDocFromForm(e) {
   var todayDate=e.values[33];
   var signature=e.values[34];
   
-
-  //construct all needed values
-  var spec = '';
-  if (s121 !== null)
-  {
-    spec=s121;
-  }
-  if (s123 !== null)
-  {
-    spec=s123;
-  }
-  if (s133 !== null)
-  {
-    spec=s133;
-  }
-  if (s141E !== null)
-  {
-    spec=s141E;
-  }
-  if (s141C !== null)
-  {
-    spec=s141C;
+  //conxtruct all needed values for the document 
+  var spec = ''; 
+  switch (contest)  {
+        case "121 «Розробка програмного забезпечення»":
+            spec = "121 Інженерія програмного забезпечення, «Розробка програмного забезпечення»";
+            break;
+        case "123 «Обслуговування комп’ютерних систем і мереж»":
+            spec = "123 Комп’ютерна інженерія «Обслуговування комп’ютерних систем і мереж»";
+            break;
+	case "133 «Технологія обробки матеріалів на верстатах і автоматичних лініях»":
+            spec = "133 Галузеве машинобудування «Технологія обробки матеріалів на верстатах і автоматичних лініях»";
+            break;
+	case "141-Е «Монтаж і експлуатація електроустаткування підприємств і цивільних споруд»":
+            spec = "141 Електроенергетика, електротехніка та електромеханіка «Монтаж і експлуатація електроустаткування підприємств і цивільних споруд»";
+            break;
+	case "141-С «Монтаж і експлуатація електротехнічних і світлотехнічних установок»":
+            spec = "141 Електроенергетика, електротехніка та електромеханіка «Монтаж і експлуатація електротехнічних і світлотехнічних установок»";
+            break;
+        default:
+            spec = '';
+            break;
   }
   
   var bud = '';
@@ -179,15 +173,7 @@ function GoogleDocFromForm(e) {
   }
   
   var adds='';
-  if (additional==null)
-  {
-    adds='  не надано  ';
-  }
-  else
-  {
-    adds=additional;
-  }
-   if (additional=="")
+  if (additional==null || additional=="")
   {
     adds='  не надано  ';
   }
@@ -257,12 +243,11 @@ function GoogleDocFromForm(e) {
   //Lastly we save and close the document to persist our changes
   doc.saveAndClose(); 
   
-  //  var repEmail="sample@gmail.com";
-  //  var eSubject="Нова заява на вступ від "+fullName;
-  //  var emBody= "Щойно ("+timestamp+") було заповнено і створено нову заяву на вступ від наступної особи: "+fullName+". Заява додається. У разі потреби внести зміни оригінал заяви знаходиться за цим посиланням: " + doc.getUrl();
-  //  MailApp.sendEmail(repEmail, eSubject, emBody);
+  //var repEmail="alexander.taurus@gmail.com";
+  //var eSubject="Нова заява на вступ від "+fullName;
+  //var emBody= "Щойно ("+timestamp+") було заповнено і створено нову заяву на вступ від наступної особи: "+fullName+". Заява додається. У разі потреби внести зміни оригінал заяви знаходиться за цим посиланням: " + doc.getUrl();
+  //MailApp.sendEmail(repEmail, eSubject, emBody);
     
-  
   //create PDF file
   var pdfFolderID ='1g04ls0dZ1rNRQReJ1iYrS2Nz6pgYspu6';
   var pdfFolder = DriveApp.getFolderById(pdfFolderID);
@@ -270,6 +255,5 @@ function GoogleDocFromForm(e) {
   var newPDFFile = pdfFolder.createFile(theBlob);
   var pdfFileName = templateFile.getName();
   newPDFFile.setName(pdfFileName + ".pdf");
-
-  
+    
 }
