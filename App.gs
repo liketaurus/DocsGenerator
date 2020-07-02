@@ -31,7 +31,7 @@ function GoogleDocFromForm(e) {
   var todayDate=e.values[33];
   var signature=e.values[34];
   
-  //conxtruct all needed values for the document 
+  //construct all needed values for the document 
   var spec = ''; 
   switch (contest)  {
         case "121 «Розробка програмного забезпечення»":
@@ -243,7 +243,8 @@ function GoogleDocFromForm(e) {
   //Lastly we save and close the document to persist our changes
   doc.saveAndClose(); 
   
-  //var repEmail="alexander.taurus@gmail.com";
+  //sending emails doesn't working at the moment:(
+  //var repEmail="xxx@gmail.com";
   //var eSubject="Нова заява на вступ від "+fullName;
   //var emBody= "Щойно ("+timestamp+") було заповнено і створено нову заяву на вступ від наступної особи: "+fullName+". Заява додається. У разі потреби внести зміни оригінал заяви знаходиться за цим посиланням: " + doc.getUrl();
   //MailApp.sendEmail(repEmail, eSubject, emBody);
