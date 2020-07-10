@@ -183,11 +183,11 @@ function GoogleDocFromForm(e) {
   }
   
   //file is the template file, and you get it by ID
-  var file = DriveApp.getFileById('1SLcVsEuRuHFcsg-JlN2ZdDf3ZxvgruLHPGrRHjmxl10'); 
+  var file = DriveApp.getFileById('YOUR_TEMPLATE_FILE_ID'); 
   
   //We can make a copy of the template, name it, and optionally tell it what folder to live in
   //file.makeCopy will return a Google Drive file object
-  var folder = DriveApp.getFolderById('1o72lDTrhP1uvurMz-RDuprFqfJA2EQ-r')
+  var folder = DriveApp.getFolderById('YOUR_RESULTING_FILE_FOLDER_ID')
   var copy = file.makeCopy(fullName + '-' + contest, folder); 
   
   //Once we've got the new file created, we need to open it as a document by using its ID
@@ -250,7 +250,7 @@ function GoogleDocFromForm(e) {
   //MailApp.sendEmail(repEmail, eSubject, emBody);
     
   //create PDF file
-  var pdfFolderID ='1g04ls0dZ1rNRQReJ1iYrS2Nz6pgYspu6';
+  var pdfFolderID ='YOUR_PDF_FILES_FOLDER_ID';
   var pdfFolder = DriveApp.getFolderById(pdfFolderID);
   var theBlob = doc.getBlob().getAs('application/pdf');
   var newPDFFile = pdfFolder.createFile(theBlob);
